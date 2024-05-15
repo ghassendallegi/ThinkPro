@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose'; // Importer Mongoose
 
 import userRoutes from './routes/user.js';
+import publicationsRoutes from './routes/publicationsRoutes.js';
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -27,6 +28,8 @@ mongoose
 app.use(express.json());
 
 app.use('/user', userRoutes);
+app.use('/publications', publicationsRoutes);
+
 
 app.listen(port, () => {
   console.log(`Server running at http://127.0.0.1:${port}/`);
