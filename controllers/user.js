@@ -5,14 +5,11 @@ import { generateToken } from '../jwt.js';
 export async function signup(req, res) {
     try {
         const { userName,passWord,email,adress,phone,role } = req.body;
-        // Vérifier si l'utilisateur existe déjà
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ message: "L'utilisateur existe déjà" });
         }
-        // Hacher le mot de passe
         const hashedPassword = await bcrypt.hash(passWord, 10);
-        // Créer un nouvel utilisateur
         const newUser = await User.create({ userName, passWord: hashedPassword ,email,adress,phone,role });
         res.status(201).json({ message: "Inscription réussie", user: newUser });
     } catch (error) {
@@ -20,31 +17,26 @@ export async function signup(req, res) {
         res.status(500).json({ error: "Une erreur s'est produite lors de l'inscription" });
     }
 }
-
 export async function signin(req, res) {
     try {
         const { email, passWord } = req.body;
-        // Trouver l'utilisateur par email
         const user = await User.findOne({ email });
         if (!user) {
             return res.status(404).json({ message: "L'utilisateur n'existe pas" });
         }
-        // Vérifier le mot de passe
         const passwordMatch = await bcrypt.compare(passWord, user.passWord);
         if (!passwordMatch) {
             return res.status(401).json({ message: "Mot de passe incorrect" });
         }
-        // Générer un token d'authentification (à implémenter)
-        // Vous pouvez utiliser JWT ou toute autre méthode d'authentification
+        
                 const authToken = generateToken({ userId: user._id, email: user.email });
- // Générer le token ici
         res.status(200).json({ message: "Connexion réussie", authToken });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Une erreur s'est produite lors de la connexion" });
     }
 }
-export function getAll(req, res) {
+export function getAllUsers(req, res) {
     User
     .find({})
     .then(docs => {
@@ -54,7 +46,7 @@ export function getAll(req, res) {
         res.status(500).json({ error: err });
     });
 }
-export async function AddOnce(req, res) {
+export async function AddUser(req, res) {
     const user = new User({
         userName: req.body.userName,
         passWord: req.body.passWord = await bcrypt.hash(req.body.passWord, 10),
@@ -79,9 +71,7 @@ export async function AddOnce(req, res) {
     }
 }
 
-
-
-export async function getOnce(req, res) {
+export async function getUser(req, res) {
     try {
         const user = await User.findOne({ userName: req.params.userName });
         
@@ -96,13 +86,10 @@ export async function getOnce(req, res) {
     }
 }
 
-
-
-export async function putOnce(req, res) {
+export async function putUser(req, res) {
     try {
 
         if (req.body.passWord) {
-            // Cryptage du nouveau mot de passe
             req.body.passWord = await bcrypt.hash(req.body.passWord, 10);
         }
 
@@ -127,12 +114,10 @@ export async function putOnce(req, res) {
     }
 }
 
-
-export async function patchOnce(req, res) {
+export async function patchUser(req, res) {
     try {
 
         if (req.body.passWord) {
-            // Cryptage du nouveau mot de passe
             req.body.passWord = await bcrypt.hash(req.body.passWord, 10);
         }
 
@@ -156,8 +141,7 @@ export async function patchOnce(req, res) {
     }
 }
 
-
-export async function deleteOnce(req, res) {
+export async function deleteUser(req, res) {
     try {
         const deletedUser = await User.findOneAndDelete({ userName: req.params.userName });
 

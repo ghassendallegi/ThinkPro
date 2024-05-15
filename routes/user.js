@@ -1,20 +1,20 @@
 import express from'express';
 var router = express.Router();
 import {
-  getOnce,
-  putOnce,
-  patchOnce,
-  getAll,
-  AddOnce,
-  deleteOnce,
+  getUser,
+  putUser,
+  patchUser,
+  getAllUsers,
+  AddUser,
+  deleteUser,
   signin,
   signup
 } from '../controllers/user.js';
 
 router
   .route('/')
-  .get(getAll)
-  .post(AddOnce);
+  .get(getAllUsers)
+  .post(AddUser);
 
 router.route('/signup')
   .post(signup);
@@ -24,11 +24,11 @@ router.route('/signin')
 
   router
   .route('/:userId')
-  .get(getOnce)
-  .put(putOnce)
-  .patch(patchOnce)
-  .delete(deleteOnce);
-/* GET users listing. */
+  .get(getUser)
+  .put(putUser)
+  .patch(patchUser)
+  .delete(deleteUser);
+
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });

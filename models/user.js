@@ -1,8 +1,7 @@
 
-import mongoose from 'mongoose'; // Importer Mongoose
-const { Schema, model } = mongoose; // Utiliser Schema et model du module mongoose
+import mongoose from 'mongoose'; 
+const { Schema, model } = mongoose; 
 
-// Créez votre schéma qui décrit à quoi ressemblera chaque document
 const userSchema = new Schema(
     {
         userName: {
@@ -36,7 +35,7 @@ const userSchema = new Schema(
         }
     },
     {
-        timestamps: true // Ajouter automatiquement createdAt et updatedAt
+        timestamps: true
     }
 );
 
