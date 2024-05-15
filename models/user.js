@@ -7,26 +7,31 @@ const userSchema = new Schema(
     {
         userName: {
             type: String,
-             // Cet attribut est obligatoire
+            required: true
         },
         passWord: {
             type: String,
+            required: true
           
         },
         email: {
             type: String,
+            required: true
            
         },
           adress: {
             type: String,
+            required: true
             
         },
           phone: {
             type: Number,
+            required: true
            
         },
           role: {
             type: String,
+            required: true
             
         }
     },

@@ -6,7 +6,9 @@ import {
   patchOnce,
   getAll,
   AddOnce,
-  deleteOnce
+  deleteOnce,
+  signin,
+  signup
 } from '../controllers/user.js';
 
 router
@@ -14,8 +16,14 @@ router
   .get(getAll)
   .post(AddOnce);
 
+router.route('/signup')
+  .post(signup);
+
+router.route('/signin')
+  .post(signin);
+
   router
-  .route('/:userName')
+  .route('/:userId')
   .get(getOnce)
   .put(putOnce)
   .patch(patchOnce)
