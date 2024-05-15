@@ -57,12 +57,14 @@ export function getAll(req, res) {
 export async function AddOnce(req, res) {
     const user = new User({
         userName: req.body.userName,
-        passWord: req.body.passWord,
+        passWord: req.body.passWord = await bcrypt.hash(req.body.passWord, 10),
         email: req.body.email,
         adress: req.body.adress,
         phone: req.body.phone,
         role: req.body.role
     });
+         
+
 
     try {
         const newUser = await User.create(user);
