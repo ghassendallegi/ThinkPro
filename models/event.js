@@ -15,13 +15,23 @@ const eventSchema = new Schema(
             type: Date
         },
         duration: {
-            type: String
+            type: Number // Durée en heures
         },
-        organizer: {
-            type: String
+        organizer_id: {
+            type: Number
         },
-        location: {
-            type: String
+        latitude: {
+                type: Number
+            },
+        longitude: {
+                type: Number
+            },
+       
+        prix_event: {
+            type: Number
+        },
+        nombre_de_places: {
+            type: Number
         }
     },
     {

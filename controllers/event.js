@@ -16,12 +16,15 @@ export async function addEvent(req, res) {
         description: req.body.description,
         date: req.body.date,
         duration: req.body.duration,
-        organizer: req.body.organizer,
-        location: req.body.location
+        organizer_id: req.body.organizer_id,
+        latitude: req.body.latitude,
+        longitude: req.body.longitude,
+        prix_event: req.body.prix_event,
+        nombre_de_places: req.body.nombre_de_places
     });
 
     try {
-        const newEvent = await Event.create(event);
+        const newEvent = await event.save();
         res.status(201).json({
             message: "Événement créé avec succès !",
             event: newEvent 
