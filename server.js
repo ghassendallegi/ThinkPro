@@ -5,7 +5,7 @@ import mongoose from 'mongoose'; // Importer Mongoose
 import userRoutes from './routes/user.js';
 import eventRoutes from './routes/event.js';
 import eventCategory from './routes/eventCategory.js';
-
+import mapRoutes  from'./routes/geocode.js';
 import paymentRoutes  from'./routes/payment.js';
 
 
@@ -37,6 +37,7 @@ app.use('/user', userRoutes);
 app.use('/event', eventRoutes);
 app.use('/eventCategory', eventCategory);
 app.use('/payment', paymentRoutes);
+app.use('/map', mapRoutes);
 
 app.listen(port, () => {
   console.log(`Server running at http://127.0.0.1:${port}/`);
