@@ -1,5 +1,5 @@
 import Event from '../models/event.js';
-
+// import Inscription from '../models/inscription.js';
 export async function getAllEvents(req, res) {
     try {
         const events = await Event.find({});
@@ -79,3 +79,17 @@ export async function deleteEvent(req, res) {
         res.status(500).json({ error: "Erreur lors de la suppression de l'événement" });
     }
 }
+
+
+
+/* export async function getNbrInscriptionByEvent(req, res) {
+    try {
+        const eventId = req.params.eventId;
+        const count = await Inscription.countDocuments({ offre_id: eventId, offre_type:3 });
+
+        res.status(200).json({ eventId, numberOfInscriptions: count });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Erreur lors de la récupération du nombre d'inscriptions pour l'événement" });
+    }
+}  */

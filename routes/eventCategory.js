@@ -20,4 +20,6 @@ router
   .patch(updateCategory)
   .delete(deleteCategory);
 
+// router.get('/events/:eventId/inscriptions/count', getNbrInscriptionByEvent);
+
 export default router;
